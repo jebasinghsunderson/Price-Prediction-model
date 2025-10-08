@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Production Prediction</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <h2>Enter Crop Details</h2>
+  <form id="predictForm">
+    Crop: 
+    <select id="crop">
+      <option value="Wheat">Wheat</option>
+      <option value="Rice">Rice</option>
+      <option value="Maize">Maize</option>
+      <option value="Bajra">Bajra</option>
+      <!-- Add all crops you used in training -->
+    </select><br>
+
+    Season: 
+    <select id="season">
+      <option value="Kharif">Kharif</option>
+      <option value="Rabi">Rabi</option>
+      <option value="Whole Year">Whole Year</option>
+    </select><br>
+
+    State: 
+    <select id="state">
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value="Punjab">Punjab</option>
+      <!-- Add all states used in training -->
+    </select><br>
+
+    Crop Year: <input type="number" id="year" value="2025"><br>
+    Area(in hectares): <input type="number" id="area" value="100"><br>
+    Annual Rainfall: <input type="number" id="rain" value="850"><br>
+     Fertilizer: <input type="number" id="fertilizer" value="100"><br>
+    Pesticide: <input type="number" id="pesticide" value="850"><br>
+    <button type="submit">Predict</button>
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script>
+    document.getElementById("predictForm").onsubmit = async function(e) {
+      e.preventDefault(); // prevent page reload
+
+      const data = {
+        Crop: document.getElementById("crop").value,
+        Season: document.getElementById("season").value,
+        State: document.getElementById("state").value,
+        Crop_Year: Number(document.getElementById("year").value),
+        Area: Number(document.getElementById("area").value),
+        Annual_Rainfall: Number(document.getElementById("rain").value),
+        Pesticide: Number(document.getElementById("pesticide").value),
+        Fertilizer: Number(document.getElementById("fertilizer").value)
+      };
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+       headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        document.getElementById("result").innerText = 
+            result.error ? "Error: " + result.error : "Predicted Production in metric ton: " + result.prediction_scaled;
+      } catch (err) {
+        document.getElementById("result").innerText = "Fetch error: " + err;
+      }
+    };
+  </script>
+</body>
+</html>

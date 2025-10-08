@@ -1,0 +1,86 @@
+/* General body styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Wrapper for the entire content */
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #1f3c88;
+  margin-bottom: 25px;
+}
+
+/* Form styling */
+form {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs and selects */
+label, select, input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+select, input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus, input:focus {
+  border-color: #1f3c88;
+  box-shadow: 0 0 5px rgba(31, 60, 136, 0.3);
+  outline: none;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1f3c88;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #3a5bbf;
+  transform: translateY(-2px);
+}
+
+/* Result at the bottom */
+#result {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #1f3c88;
+  font-weight: bold;
+}
